@@ -21,7 +21,7 @@
         }
 
         .box {
-            width: 350px;
+            width: 420px; /* 🔥 increased for buttons */
             max-width: 90%;
             padding: 25px;
             text-align: center;
@@ -35,16 +35,35 @@
             font-size: 15px;
         }
 
-        button {
-            margin: 10px;
-            padding: 10px 15px;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
+        /* 🔥 buttons container */
+        .btns {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .yes { background: green; color: white; }
-        .no { background: red; color: white; }
+        .btns button {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            background: transparent;
+            border: 2px solid black;
+        }
+
+        .yes {
+            border-color: green;
+            color: green;
+        }
+
+        .no {
+            border-color: red;
+            color: red;
+        }
 
         .popup {
             position: fixed;
@@ -62,7 +81,7 @@
             font-weight: bold;
         }
 
-        /* Hidden video */
+        /* hidden video */
         #bgVideo {
             position: absolute;
             width: 1px;
@@ -74,31 +93,40 @@
 
 <body>
 
-<!-- 🔥 Hidden video (audio1) -->
-<video id="bgVideo" loop autoplay playsinline>
+<!-- hidden video -->
+<video id="bgVideo" loop autoplay muted playsinline>
     <source src="video1.mp4" type="video/mp4">
 </video>
 
-<!-- 🔊 NO audio -->
 <audio id="noMusic" loop>
     <source src="./audio2.mp3" type="audio/mpeg">
 </audio>
 
 <div class="box">
+
     <p>
     Hey, Hi<br>
     Assalamu-alaikum 💐<br><br>
+
     Umeed karta hun ki Aap Khair-o-afiyat se honge  
     aur aapka din Khoobsurat guzar raha hoga 💜<br><br>
+
     Maafi chahta hu bina kuch kahe apse  
     me ye bana rah hun aur inshaAllah ap maaf karenge ✨<br><br>
+
     Mujhe Aapse kuch kehna tha  
     isliye me apke liye ye bana raha hun 😊<br><br>
-    Aage jaanne ke liye...
+
+    Aage jaanne ke liye...<br><br>
+
+    Click the buttons according to your Wish 👇
     </p>
 
-    <button class="yes" onclick="goNext()">G, Me Janna Chahunge 🥰</button>
-    <button class="no" onclick="showPopup()">Nhi, Mujhe Nhi jaanna Kuch 😑</button>
+    <div class="btns">
+        <button class="yes" onclick="goNext()">G, Me Janna Chahunge 🥰</button>
+        <button class="no" onclick="showPopup()">Nhi, Mujhe Nhi jaanna Kuch 😑</button>
+    </div>
+
 </div>
 
 <div id="popupBox" class="popup">
@@ -108,20 +136,13 @@
 </div>
 
 <script>
-    // Try autoplay (video)
     window.onload = function () {
         let vid = document.getElementById("bgVideo");
+        vid.play();
 
-        let playPromise = vid.play();
-
-        if (playPromise !== undefined) {
-            playPromise.catch(() => {
-                // fallback click
-                document.addEventListener("click", () => {
-                    vid.play();
-                }, { once: true });
-            });
-        }
+        setTimeout(() => {
+            vid.muted = false;
+        }, 1000);
     };
 
     function goNext() {
@@ -141,11 +162,9 @@
         let vid = document.getElementById("bgVideo");
         let no = document.getElementById("noMusic");
 
-        // 🔥 stop video audio completely
         vid.pause();
         vid.currentTime = 0;
 
-        // 🔥 start NO audio clean
         no.pause();
         no.currentTime = 0;
         no.play();
