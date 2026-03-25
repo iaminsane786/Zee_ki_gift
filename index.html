@@ -8,7 +8,12 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            background: url('bg.jpg') no-repeat center center/cover;
+
+            background-image: url("./bg.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,16 +26,12 @@
             padding: 25px;
             text-align: center;
             background: rgba(255, 255, 255, 0.9);
-            color: black;
             border: 2px solid black;
-            box-sizing: border-box;
         }
 
         p {
             font-weight: bold;
-            color: black;
             line-height: 1.6;
-            word-wrap: break-word;
             font-size: 15px;
         }
 
@@ -42,17 +43,9 @@
             cursor: pointer;
         }
 
-        .yes {
-            background-color: #4CAF50;
-            color: white;
-        }
+        .yes { background: green; color: white; }
+        .no { background: red; color: white; }
 
-        .no {
-            background-color: #f44336;
-            color: white;
-        }
-
-        /* Popup */
         .popup {
             position: fixed;
             top: 50%;
@@ -67,79 +60,67 @@
             align-items: center;
             text-align: center;
             font-weight: bold;
-            padding: 20px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Background Audio -->
-    <audio id="bgMusic" autoplay loop>
-        <source src="audio1.mp3" type="audio/mpeg">
-    </audio>
+<audio id="bgMusic" loop>
+    <source src="./audio1.mp3" type="audio/mpeg">
+</audio>
 
-    <!-- NO Audio -->
-    <audio id="noMusic" loop>
-        <source src="audio2.mp3" type="audio/mpeg">
-    </audio>
+<audio id="noMusic" loop>
+    <source src="./audio2.mp3" type="audio/mpeg">
+</audio>
 
-    <div class="box">
+<div class="box">
+    <p>
+    Hey, Hi<br>
+    Assalamu-alaikum 💐<br><br>
+    Umeed karta hun ki Aap Khair-o-afiyat se honge  
+    aur aapka din Khoobsurat guzar raha hoga 💜<br><br>
+    Maafi chahta hu bina kuch kahe apse  
+    me ye bana rah hun aur inshaAllah ap maaf karenge ✨<br><br>
+    Mujhe Aapse kuch kehna tha  
+    isliye me apke liye ye bana raha hun 😊<br><br>
+    Aage jaanne ke liye...
+    </p>
 
-        <p>
-        Hey, Hi<br>
-        Assalamu-alaikum 💐<br><br>
+    <button class="yes" onclick="goNext()">G, Me Janna Chahunge 🥰</button>
+    <button class="no" onclick="showPopup()">Nhi, Mujhe Nhi jaanna Kuch 😑</button>
+</div>
 
-        Umeed karta hun ki Aap Khair-o-afiyat se honge  
-        aur aapka din Khoobsurat guzar raha hoga 💜<br><br>
+<div id="popupBox" class="popup">
+    Its OK,<br><br>
+    No Problem<br><br>
+    Jese Apki Marzi 🙃
+</div>
 
-        Maafi chahta hu bina kuch kahe apse  
-        me ye bana rah hun aur inshaAllah ap maaf karenge ✨<br><br>
+<script>
+    // First click → start background music
+    document.addEventListener("click", function () {
+        document.getElementById("bgMusic").play();
+    }, { once: true });
 
-        Mujhe Aapse kuch kehna tha  
-        isliye me apke liye ye bana raha hun 😊<br><br>
+    function goNext() {
+        bgMusic.pause();
+        noMusic.pause();
+        window.location.href = "page2.html";
+    }
 
-        Aage jaanne ke liye...
-        </p>
+    function showPopup() {
+        bgMusic.pause();
+        noMusic.play();
 
-        <button class="yes" onclick="goNext()">
-            G, Me Janna Chahunge 🥰
-        </button>
+        let popup = document.getElementById("popupBox");
+        popup.style.display = "flex";
 
-        <button class="no" onclick="showPopup()">
-            Nhi, Mujhe Nhi jaanna Kuch 😑
-        </button>
-
-    </div>
-
-    <!-- Popup -->
-    <div id="popupBox" class="popup">
-        Its OK,<br><br>
-        No Problem<br><br>
-        Jese Apki Marzi 🙃
-    </div>
-
-    <script>
-        function goNext() {
-            document.getElementById("bgMusic").pause();
-            document.getElementById("noMusic").pause();
-            window.location.href = "page2.html";
-        }
-
-        function showPopup() {
-            document.getElementById("bgMusic").pause();
-
-            let noMusic = document.getElementById("noMusic");
-            noMusic.play();
-
-            let popup = document.getElementById("popupBox");
-            popup.style.display = "flex";
-
-            setTimeout(() => {
-                popup.style.display = "none";
-            }, 5000);
-        }
-    </script>
+        setTimeout(() => {
+            popup.style.display = "none";
+        }, 5000);
+    }
+</script>
 
 </body>
 </html>
