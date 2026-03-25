@@ -60,7 +60,7 @@
         p {
             font-weight: bold;
             line-height: 1.6;
-            font-size: 18px; /* 🔥 20% bigger */
+            font-size: 16px; /* 🔥 balanced */
         }
 
         .btns {
@@ -75,8 +75,8 @@
         }
 
         button {
-            padding: 12px;
-            font-size: 17px; /* 🔥 20% bigger */
+            padding: 11px;
+            font-size: 15px; /* 🔥 balanced */
             cursor: pointer;
             background: transparent;
             border: 2px solid black;
@@ -98,7 +98,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 280px;
-            height: 280px;
+            height: 260px;
             background: black;
             color: white;
             display: none;
@@ -106,7 +106,7 @@
             align-items: center;
             text-align: center;
             font-weight: bold;
-            font-size: 18px; /* 🔥 balanced */
+            font-size: 16px; /* 🔥 balanced */
             z-index: 3;
         }
 
@@ -121,7 +121,6 @@
 
 <body>
 
-<!-- 🌸 FLOWERS -->
 <div class="flowers"></div>
 
 <video id="bgVideo" loop autoplay muted playsinline>
@@ -207,7 +206,6 @@
         }, 5000);
     }
 
-    // 🌸 FLOWERS
     function createFlower() {
         const flower = document.createElement("div");
         flower.classList.add("flower");
