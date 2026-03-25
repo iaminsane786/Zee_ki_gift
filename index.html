@@ -61,15 +61,25 @@
             text-align: center;
             font-weight: bold;
         }
+
+        /* Hidden video */
+        #bgVideo {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
     </style>
 </head>
 
 <body>
 
-<audio id="bgMusic" loop>
-    <source src="./audio1.mp3" type="audio/mpeg">
-</audio>
+<!-- 🔥 Hidden video (audio1) -->
+<video id="bgVideo" loop autoplay playsinline>
+    <source src="video1.mp4" type="video/mp4">
+</video>
 
+<!-- 🔊 NO audio -->
 <audio id="noMusic" loop>
     <source src="./audio2.mp3" type="audio/mpeg">
 </audio>
@@ -98,20 +108,47 @@
 </div>
 
 <script>
-    // First click → start background music
-    document.addEventListener("click", function () {
-        document.getElementById("bgMusic").play();
-    }, { once: true });
+    // Try autoplay (video)
+    window.onload = function () {
+        let vid = document.getElementById("bgVideo");
+
+        let playPromise = vid.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // fallback click
+                document.addEventListener("click", () => {
+                    vid.play();
+                }, { once: true });
+            });
+        }
+    };
 
     function goNext() {
-        bgMusic.pause();
-        noMusic.pause();
+        let vid = document.getElementById("bgVideo");
+        let no = document.getElementById("noMusic");
+
+        vid.pause();
+        vid.currentTime = 0;
+
+        no.pause();
+        no.currentTime = 0;
+
         window.location.href = "page2.html";
     }
 
     function showPopup() {
-        bgMusic.pause();
-        noMusic.play();
+        let vid = document.getElementById("bgVideo");
+        let no = document.getElementById("noMusic");
+
+        // 🔥 stop video audio completely
+        vid.pause();
+        vid.currentTime = 0;
+
+        // 🔥 start NO audio clean
+        no.pause();
+        no.currentTime = 0;
+        no.play();
 
         let popup = document.getElementById("popupBox");
         popup.style.display = "flex";
