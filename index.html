@@ -42,6 +42,26 @@
             background-color: #f44336;
             color: white;
         }
+
+        /* Popup Box */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            background: white;
+            color: black;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            font-weight: bold;
+            padding: 20px;
+        }
     </style>
 </head>
 
@@ -52,7 +72,7 @@
         <source src="audio1.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Second Audio (No button) -->
+    <!-- NO Button Audio -->
     <audio id="noMusic" loop>
         <source src="audio2.mp3" type="audio/mpeg">
     </audio>
@@ -60,6 +80,7 @@
     <div class="box">
 
         <p>
+        <b>
         Hey, Hi<br>
         Assalamu-alaikum 💐<br><br>
 
@@ -73,16 +94,26 @@
         isliye me apke liye ye bana raha hun 😊<br><br>
 
         Aage jaanne ke liye...
+        </b>
         </p>
 
         <button class="yes" onclick="goNext()">
             G, Me Janna Chahunge 🥰
         </button>
 
-        <button class="no" onclick="playNo()">
+        <button class="no" onclick="showPopup()">
             Nhi, Mujhe Nhi jaanna Kuch 😑
         </button>
 
+    </div>
+
+    <!-- Popup Box -->
+    <div id="popupBox" class="popup">
+        <div>
+            Its OK,<br><br>
+            No Problem<br><br>
+            Jese Apki Marzi 🙃
+        </div>
     </div>
 
     <script>
@@ -92,10 +123,13 @@
             window.location.href = "page2.html";
         }
 
-        function playNo() {
+        function showPopup() {
             document.getElementById("bgMusic").pause();
+
             let noMusic = document.getElementById("noMusic");
             noMusic.play();
+
+            document.getElementById("popupBox").style.display = "flex";
         }
     </script>
 
