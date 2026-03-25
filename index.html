@@ -17,11 +17,21 @@
 
         .box {
             width: 350px;
+            max-width: 90%;
             padding: 25px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             color: black;
-            border: 2px solid black; /* added border */
+            border: 2px solid black;
+            box-sizing: border-box;
+        }
+
+        p {
+            font-weight: bold;
+            color: black;
+            line-height: 1.6;
+            word-wrap: break-word;
+            font-size: 15px;
         }
 
         button {
@@ -40,11 +50,6 @@
         .no {
             background-color: #f44336;
             color: white;
-        }
-
-        p {
-            font-weight: bold;
-            color: black;
         }
 
         /* Popup */
@@ -107,7 +112,7 @@
 
     </div>
 
-    <!-- Popup Box -->
+    <!-- Popup -->
     <div id="popupBox" class="popup">
         Its OK,<br><br>
         No Problem<br><br>
