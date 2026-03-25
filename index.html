@@ -19,9 +19,8 @@
             width: 350px;
             padding: 25px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.85);
+            color: black;
         }
 
         button {
@@ -29,7 +28,6 @@
             padding: 10px 15px;
             font-size: 14px;
             border: none;
-            border-radius: 8px;
             cursor: pointer;
         }
 
@@ -43,7 +41,12 @@
             color: white;
         }
 
-        /* Popup Box */
+        p {
+            font-weight: bold;
+            color: black;
+        }
+
+        /* Popup */
         .popup {
             position: fixed;
             top: 50%;
@@ -51,14 +54,12 @@
             transform: translate(-50%, -50%);
             width: 280px;
             height: 280px;
-            background: white;
-            color: black;
+            background: black;
+            color: white;
             display: none;
             justify-content: center;
             align-items: center;
             text-align: center;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
             font-weight: bold;
             padding: 20px;
         }
@@ -72,7 +73,7 @@
         <source src="audio1.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- NO Button Audio -->
+    <!-- NO Audio -->
     <audio id="noMusic" loop>
         <source src="audio2.mp3" type="audio/mpeg">
     </audio>
@@ -80,7 +81,6 @@
     <div class="box">
 
         <p>
-        <b>
         Hey, Hi<br>
         Assalamu-alaikum 💐<br><br>
 
@@ -94,7 +94,6 @@
         isliye me apke liye ye bana raha hun 😊<br><br>
 
         Aage jaanne ke liye...
-        </b>
         </p>
 
         <button class="yes" onclick="goNext()">
@@ -109,11 +108,9 @@
 
     <!-- Popup Box -->
     <div id="popupBox" class="popup">
-        <div>
-            Its OK,<br><br>
-            No Problem<br><br>
-            Jese Apki Marzi 🙃
-        </div>
+        Its OK,<br><br>
+        No Problem<br><br>
+        Jese Apki Marzi 🙃
     </div>
 
     <script>
@@ -129,7 +126,13 @@
             let noMusic = document.getElementById("noMusic");
             noMusic.play();
 
-            document.getElementById("popupBox").style.display = "flex";
+            let popup = document.getElementById("popupBox");
+            popup.style.display = "flex";
+
+            // hide after 5 seconds
+            setTimeout(() => {
+                popup.style.display = "none";
+            }, 5000);
         }
     </script>
 
