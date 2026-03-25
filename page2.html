@@ -18,8 +18,8 @@
 
         /* 🔥 BLACK START BOX */
         .box {
-            width: 350px;
-            padding: 25px;
+            width: 380px;
+            padding: 30px;
             text-align: center;
             background: black;
             color: white;
@@ -28,12 +28,13 @@
 
         p {
             font-weight: bold;
+            font-size: 18px;
             color: white;
         }
 
         .timer {
             margin-top: 10px;
-            font-size: 20px;
+            font-size: 28px;
             font-weight: bold;
             color: white;
         }
@@ -41,13 +42,13 @@
         /* 🎥 VIDEO */
         #videoBox {
             display: none;
-            width: 400px;
+            width: 500px;
             text-align: center;
         }
 
         video {
             width: 100%;
-            border: 2px solid black;
+            border: 2px solid white;
         }
 
         /* ⏭ SKIP */
@@ -70,7 +71,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 280px;
+            width: 300px;
             height: 200px;
             background: black;
             color: white;
@@ -80,6 +81,7 @@
             flex-direction: column;
             text-align: center;
             font-weight: bold;
+            font-size: 18px;
         }
 
         /* ⚪ WHITE POPUP */
@@ -88,7 +90,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 280px;
+            width: 300px;
             height: 200px;
             background: white;
             color: black;
@@ -97,6 +99,7 @@
             align-items: center;
             text-align: center;
             font-weight: bold;
+            font-size: 18px;
         }
 
         .popupBlack button {
@@ -112,7 +115,7 @@
 <!-- SKIP -->
 <div class="skip" id="skipBtn" onclick="goNext()">SKIP</div>
 
-<!-- 🔥 START BLACK BOX -->
+<!-- START BOX -->
 <div class="box" id="startBox">
     <p>Chalo me tumhe pehle thoda hasaun 😄</p>
     <div class="timer" id="timer">5</div>
@@ -150,20 +153,23 @@
             // hide intro
             document.getElementById("startBox").style.display = "none";
 
+            // 🔥 change background to black
+            document.body.style.background = "black";
+
             // show video
             document.getElementById("videoBox").style.display = "block";
 
             // show skip
             document.getElementById("skipBtn").style.display = "block";
 
-            // start video ONLY here
+            // start video
             let video = document.getElementById("video");
             video.currentTime = 0;
             video.play();
         }
     }, 1000);
 
-    // video end → show popup
+    // video end → popup
     document.getElementById("video").addEventListener("ended", () => {
         document.getElementById("popupBlack").style.display = "flex";
     });
