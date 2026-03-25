@@ -3,6 +3,8 @@
 <head>
     <title>For You 💜</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
             margin: 0;
@@ -20,6 +22,31 @@
             font-family: Arial, sans-serif;
         }
 
+        /* 🌸 FLOWERS */
+        .flowers {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .flower {
+            position: absolute;
+            bottom: -50px;
+            opacity: 0.5;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50vh) translateX(30px); }
+            100% { transform: translateY(-110vh) translateX(-30px); opacity: 0; }
+        }
+
         .box {
             width: 420px;
             max-width: 90%;
@@ -33,7 +60,7 @@
         p {
             font-weight: bold;
             line-height: 1.6;
-            font-size: 15px;
+            font-size: 22px;
         }
 
         .btns {
@@ -48,8 +75,9 @@
         }
 
         button {
-            padding: 10px;
-            font-size: 14px;
+            padding: 12px;
+            font-size: 17px;
+            font-weight: bold;
             cursor: pointer;
             background: transparent;
             border: 2px solid black;
@@ -70,8 +98,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 280px;
-            height: 280px;
+            width: 85%;
+            max-width: 320px;
+            height: 220px;
             background: black;
             color: white;
             display: none;
@@ -79,6 +108,7 @@
             align-items: center;
             text-align: center;
             font-weight: bold;
+            font-size: 20px;
             z-index: 3;
         }
 
@@ -88,45 +118,12 @@
             height: 1px;
             opacity: 0;
         }
-
-        /* 🌸 Flowers */
-        .flowers {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .flower {
-            position: absolute;
-            bottom: -50px;
-            opacity: 0.5;
-            animation: floatUp linear infinite;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0.5;
-            }
-            50% {
-                transform: translateY(-50vh) translateX(30px);
-            }
-            100% {
-                transform: translateY(-110vh) translateX(-30px);
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 
 <body>
 
-<!-- 🌸 Flowers -->
+<!-- 🌸 FLOWERS -->
 <div class="flowers"></div>
 
 <!-- hidden video -->
@@ -172,7 +169,6 @@
 </div>
 
 <script>
-    // 🔊 video audio autoplay fix
     window.onload = function () {
         let vid = document.getElementById("bgVideo");
         vid.play();
@@ -214,7 +210,7 @@
         }, 5000);
     }
 
-    // 🌸 create flowers
+    // 🌸 FLOWERS SCRIPT
     function createFlower() {
         const flower = document.createElement("div");
         flower.classList.add("flower");
