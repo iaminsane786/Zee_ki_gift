@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For You 💜</title>
 
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: url('bg.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .box {
+            width: 350px;
+            padding: 25px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 15px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .no {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Audio -->
+    <audio id="bgMusic" autoplay loop>
+        <source src="audio1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Second Audio (No button) -->
+    <audio id="noMusic" loop>
+        <source src="audio2.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="box">
+
+        <p>
+        Hey, Hi<br>
+        Assalamu-alaikum 💐<br><br>
+
+        Umeed karta hun ki Aap Khair-o-afiyat se honge  
+        aur aapka din Khoobsurat guzar raha hoga 💜<br><br>
+
+        Maafi chahta hu bina kuch kahe apse  
+        me ye bana rah hun aur inshaAllah ap maaf karenge ✨<br><br>
+
+        Mujhe Aapse kuch kehna tha  
+        isliye me apke liye ye bana raha hun 😊<br><br>
+
+        Aage jaanne ke liye...
+        </p>
+
+        <button class="yes" onclick="goNext()">
+            G, Me Janna Chahunge 🥰
+        </button>
+
+        <button class="no" onclick="playNo()">
+            Nhi, Mujhe Nhi jaanna Kuch 😑
+        </button>
+
+    </div>
+
+    <script>
+        function goNext() {
+            document.getElementById("bgMusic").pause();
+            document.getElementById("noMusic").pause();
+            window.location.href = "page2.html";
+        }
+
+        function playNo() {
+            document.getElementById("bgMusic").pause();
+            let noMusic = document.getElementById("noMusic");
+            noMusic.play();
+        }
+    </script>
+
+</body>
+</html>
