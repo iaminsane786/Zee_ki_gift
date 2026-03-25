@@ -21,12 +21,13 @@
         }
 
         .box {
-            width: 420px; /* 🔥 increased for buttons */
+            width: 420px;
             max-width: 90%;
             padding: 25px;
             text-align: center;
             background: rgba(255, 255, 255, 0.9);
             border: 2px solid black;
+            z-index: 2;
         }
 
         p {
@@ -35,7 +36,6 @@
             font-size: 15px;
         }
 
-        /* 🔥 buttons container */
         .btns {
             display: flex;
             justify-content: center;
@@ -79,19 +79,55 @@
             align-items: center;
             text-align: center;
             font-weight: bold;
+            z-index: 3;
         }
 
-        /* hidden video */
         #bgVideo {
             position: absolute;
             width: 1px;
             height: 1px;
             opacity: 0;
         }
+
+        /* 🌸 Flowers */
+        .flowers {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .flower {
+            position: absolute;
+            bottom: -50px;
+            opacity: 0.5;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-50vh) translateX(30px);
+            }
+            100% {
+                transform: translateY(-110vh) translateX(-30px);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
+
+<!-- 🌸 Flowers -->
+<div class="flowers"></div>
 
 <!-- hidden video -->
 <video id="bgVideo" loop autoplay muted playsinline>
@@ -136,6 +172,7 @@
 </div>
 
 <script>
+    // 🔊 video audio autoplay fix
     window.onload = function () {
         let vid = document.getElementById("bgVideo");
         vid.play();
@@ -176,6 +213,27 @@
             popup.style.display = "none";
         }, 5000);
     }
+
+    // 🌸 create flowers
+    function createFlower() {
+        const flower = document.createElement("div");
+        flower.classList.add("flower");
+
+        const flowers = ["🌸","🌺","🌼","💮"];
+        flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.fontSize = (15 + Math.random() * 20) + "px";
+        flower.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+        document.querySelector(".flowers").appendChild(flower);
+
+        setTimeout(() => {
+            flower.remove();
+        }, 10000);
+    }
+
+    setInterval(createFlower, 500);
 </script>
 
 </body>
