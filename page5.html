@@ -13,7 +13,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
         }
 
         .container {
@@ -21,7 +22,7 @@
         }
 
         .title {
-            font-weight: 900; /* extra bold */
+            font-weight: 900;
             font-size: 18px;
             margin-bottom: 18px;
             color: black;
@@ -59,9 +60,9 @@
             margin-top: 58px;
             border: 2px solid green;
             color: green;
-            width: 105px;
-            height: 34px;
-            font-size: 9px;
+            width: 85px;
+            height: 30px;
+            font-size: 8px;
         }
 
         .moving-text {
@@ -87,31 +88,26 @@
             50%  { transform: translate(-50%, -50%) translate(16px, 6px); }
             100% { transform: translate(-50%, -50%) translate(-16px, -6px); }
         }
-
         @keyframes bounce2 {
             0%   { transform: translate(-50%, -50%) translate(12px, 8px); }
             50%  { transform: translate(-50%, -50%) translate(-12px, -8px); }
             100% { transform: translate(-50%, -50%) translate(12px, 8px); }
         }
-
         @keyframes bounce3 {
             0%   { transform: translate(-50%, -50%) translate(-10px, 7px); }
             50%  { transform: translate(-50%, -50%) translate(10px, -7px); }
             100% { transform: translate(-50%, -50%) translate(-10px, 7px); }
         }
-
         @keyframes bounce4 {
             0%   { transform: translate(-50%, -50%) translate(14px, -7px); }
             50%  { transform: translate(-50%, -50%) translate(-14px, 7px); }
             100% { transform: translate(-50%, -50%) translate(14px, -7px); }
         }
-
         @keyframes bounce5 {
             0%   { transform: translate(-50%, -50%) translate(-13px, -5px); }
             50%  { transform: translate(-50%, -50%) translate(13px, 5px); }
             100% { transform: translate(-50%, -50%) translate(-13px, -5px); }
         }
-
         @keyframes bounce6 {
             0%   { transform: translate(-50%, -50%) translate(10px, 6px); }
             50%  { transform: translate(-50%, -50%) translate(-10px, -6px); }
@@ -126,11 +122,13 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            z-index: 20;
         }
 
         video {
             width: 90%;
             max-width: 500px;
+            display: block;
         }
 
         .skip {
@@ -143,24 +141,59 @@
             background: rgba(255,255,255,0.2);
             cursor: pointer;
             font-weight: bold;
+            z-index: 22;
         }
 
         .choice {
-            margin-top: 15px;
-            text-align: center;
+            display: none;
+            position: absolute;
+            inset: 0;
+            justify-content: center;
+            align-items: center;
+            z-index: 25;
         }
 
         .choice-box {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.12);
             border: 2px solid white;
-            padding: 15px;
-            margin-top: 15px;
+            padding: 18px;
+            text-align: center;
+            color: white;
         }
 
         .choice-title {
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: white;
+        }
+
+        .choice button {
+            display: block;
+            margin: 8px auto;
+            padding: 10px 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                width: 210px;
+                height: 44px;
+            }
+
+            .next {
+                width: 78px;
+                height: 28px;
+                font-size: 7px;
+            }
+
+            .title {
+                font-size: 15px;
+            }
+
+            .choice-box {
+                width: 82vw;
+            }
         }
     </style>
 </head>
@@ -187,15 +220,14 @@
     <button class="btn lavender"><span class="moving-text m6">TAREEF NO. 6</span></button>
 
     <button class="btn next" onclick="goNext()">NEXT PAGE</button>
-
 </div>
 
 <div class="video-screen" id="videoScreen">
-    <div class="skip" onclick="skipVideo()">SKIP</div>
+    <div class="skip" id="skipBtn" onclick="skipVideo()">SKIP</div>
 
-    <video id="videoPlayer"></video>
+    <video id="videoPlayer" playsinline></video>
 
-    <div class="choice" id="choiceBtns" style="display:none;">
+    <div class="choice" id="choiceBtns">
         <div class="choice-box">
             <div class="choice-title">PLEASE SELECT</div>
             <button onclick="more()">Aur Tareef Sunna Chahti Hun</button>
@@ -210,6 +242,7 @@
     const screen = document.getElementById("videoScreen");
     const main = document.getElementById("mainBtns");
     const choice = document.getElementById("choiceBtns");
+    const skipBtn = document.getElementById("skipBtn");
 
     const buttons = document.querySelectorAll(".btn:not(.next)");
 
@@ -217,9 +250,23 @@
         btn.onclick = () => playVideo(index + 1);
     });
 
-    function stopAll() {
+    function stopVideo() {
         video.pause();
         video.currentTime = 0;
+        video.removeAttribute("src");
+        video.load();
+    }
+
+    function showChoice() {
+        video.style.display = "none";
+        skipBtn.style.display = "none";
+        choice.style.display = "flex";
+    }
+
+    function hideChoice() {
+        choice.style.display = "none";
+        video.style.display = "block";
+        skipBtn.style.display = "block";
     }
 
     function playVideo(num) {
@@ -228,38 +275,43 @@
 
         main.style.display = "none";
         screen.style.display = "flex";
-        choice.style.display = "none";
+        hideChoice();
 
         video.src = "video5-" + num + ".mp4";
-        video.play();
+        video.currentTime = 0;
+        video.play().catch(() => {});
     }
 
-    video.addEventListener("ended", function () {
-        choice.style.display = "block";
-    });
+    video.onended = function () {
+        showChoice();
+    };
 
     function skipVideo() {
-        stopAll();
-        choice.style.display = "block";
+        stopVideo();
+        showChoice();
     }
 
     function more() {
-        stopAll();
+        stopVideo();
         screen.style.display = "none";
         main.style.display = "block";
+        hideChoice();
 
         bg.currentTime = 0;
-        bg.play();
+        bg.play().catch(() => {});
     }
 
     function enough() {
-        stopAll();
+        stopVideo();
         bg.pause();
+        bg.currentTime = 0;
         window.location.href = "page6.html";
     }
 
     function goNext() {
+        stopVideo();
         bg.pause();
+        bg.currentTime = 0;
         window.location.href = "page6.html";
     }
 </script>
