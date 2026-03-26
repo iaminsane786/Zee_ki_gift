@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Page 3 💜</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -10,13 +9,11 @@
             margin: 0;
             padding: 20px;
             min-height: 100vh;
-            box-sizing: border-box;
 
             background-image: url("./bg3.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
 
             display: flex;
             justify-content: center;
@@ -28,95 +25,113 @@
             width: min(92vw, 700px);
             max-height: 85vh;
             overflow-y: auto;
-            padding: 24px;
+            padding: 20px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.88);
+
+            background: none; /* 🔥 FULL transparent */
             border: 2px solid black;
-            box-sizing: border-box;
         }
 
         .text {
             font-weight: bold;
-            font-size: 16px;
+            font-size: 10px; /* 🔥 smaller */
             line-height: 1.8;
             color: black;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
+        .audio-btn,
         .next-btn {
-            padding: 12px 22px;
-            font-size: 15px;
+            padding: 10px 20px;
+            font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             background: transparent;
+        }
+
+        .audio-btn {
+            border: 2px solid black;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .next-btn {
             border: 2px solid green;
             color: green;
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 14px;
-            }
-
-            .box {
-                width: 94vw;
-                max-height: 88vh;
-                padding: 18px;
-            }
-
-            .text {
-                font-size: 14px;
-                line-height: 1.7;
-            }
-
-            .next-btn {
-                font-size: 14px;
-                padding: 10px 18px;
-            }
+        .btn-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     </style>
 </head>
 
 <body>
 
-    <audio id="page3Music" autoplay loop>
-        <source src="audio3.mp3" type="audio/mpeg">
-    </audio>
+<audio id="page3Music" autoplay loop>
+    <source src="audio3.mp3" type="audio/mpeg">
+</audio>
 
-    <div class="box">
-        <div class="text">
-            Mera naam... khair, naam mein kya rakha hai !! Muje log pyaar se Zee💗 keh kar bulate hain.
-            Shayad tum soch rahe hoge ke main ye sab tumhein kyun bata raha hun 💭 ? Baat darasal
-            Chaand Raat ki hai. Hamesha ki tarah is Eid ki taiyariyan chal rhi thi. 🕌 Abbu aksar ghar
-            ka saman wagera khud hi late hain, magar is baar ek cheez reh gayi thi. 🛍️<br><br>
+<audio id="clickMusic" loop>
+    <source src="audio4.mp3" type="audio/mpeg">
+</audio>
 
-            Unhone mujhse kaha, " Beta, tum Buxi Bazar wali market se ja kar le aao whin se ata hai
-            hmnara ghr ka saman 🛵 " Main wahan gaya toh tha sauda lene, magar wahan mujhe kuch aur hi
-            mil gaya. Wahin pehli baar dekha Usko jisko Me apne khwab me dekhta hu mene dekha tumhe
-            Hijab aur Mask pehene hue us din 🧕 Kehte hain log Chand dekhke Eid manate hain, par maine
-            toh tumhe dekh kar hi apni Eid mana li thi. 🌙✨<br><br>
+<div class="box">
 
-            Tumhari wo bhuri aankhein (Brown Eyes)... 🤎👁️ un mein aisi kashish thi ke main wahin
-            thamm gaya. Dil toh kiya ke tumse us saman ke baare mein puchun, magar himmat na hui. 🤐
-            Phir tumhare Abbu se pucha, par unhone mana kar diya ke wo cheez wahan nahi thi. 🚶‍♂️
-            Mera dil bas yahi chah raha tha ke waqt wahin ruk jaye ⏳ aur main bas tumhari un aankhon
-            ko takta rahun. 💕<br><br>
+    <div class="text">
+        Mera naam... khair, naam mein kya rakha hai !! Muje log pyaar se Zee💗 keh kar bulate hain.
+        Shayad tum soch rahe hoge ke main ye sab tumhein kyun bata raha hun 💭 ? Baat darasal
+        Chaand Raat ki hai. Hamesha ki tarah is Eid ki taiyariyan chal rhi thi. 🕌 Abbu aksar ghar
+        ka saman wagera khud hi late hain, magar is baar ek cheez reh gayi thi. 🛍️<br><br>
 
-            Wo bhuri aankhein aaj bhi meri yaadon mein pehra deti hain... 💭🤎 unhone mujhe is qadar
-            deewana bana diya hai ke main aaj tak unse nikal nahi paya 💫
-        </div>
+        Unhone mujhse kaha, " Beta, tum Buxi Bazar wali market se ja kar le aao whin se ata hai
+        hmnara ghr ka saman 🛵 " Main wahan gaya toh tha sauda lene, magar wahan mujhe kuch aur hi
+        mil gaya. Wahin pehli baar dekha Usko jisko Me apne khwab me dekhta hu mene dekha tumhe
+        Hijab aur Mask pehene hue us din 🧕 Kehte hain log Chand dekhke Eid manate hain, par maine
+        toh tumhe dekh kar hi apni Eid mana li thi. 🌙✨<br><br>
 
+        Tumhari wo bhuri aankhein (Brown Eyes)... 🤎👁️ un mein aisi kashish thi ke main wahin
+        thamm gaya. Dil toh kiya ke tumse us saman ke baare mein puchun, magar himmat na hui. 🤐
+        Phir tumhare Abbu se pucha, par unhone mana kar diya ke wo cheez wahan nahi thi. 🚶‍♂️
+        Mera dil bas yahi chah raha tha ke waqt wahin ruk jaye ⏳ aur main bas tumhari un aankhon
+        ko takta rahun. 💕<br><br>
+
+        Wo bhuri aankhein aaj bhi meri yaadon mein pehra deti hain... 💭🤎 unhone mujhe is qadar
+        deewana bana diya hai ke main aaj tak unse nikal nahi paya 💫
+    </div>
+
+    <div class="btn-wrap">
+        <button class="audio-btn" onclick="playClickAudio()">PLAY AUDIO</button>
         <button class="next-btn" onclick="goNext()">NEXT</button>
     </div>
 
-    <script>
-        function goNext() {
-            const music = document.getElementById("page3Music");
-            music.pause();
-            music.currentTime = 0;
-            window.location.href = "page4.html";
-        }
-    </script>
+</div>
+
+<script>
+function playClickAudio() {
+    let bg = document.getElementById("page3Music");
+    let click = document.getElementById("clickMusic");
+
+    bg.pause();
+    bg.currentTime = 0;
+
+    click.pause();
+    click.currentTime = 0;
+    click.play();
+}
+
+function goNext() {
+    let bg = document.getElementById("page3Music");
+    let click = document.getElementById("clickMusic");
+
+    bg.pause();
+    click.pause();
+
+    window.location.href = "page4.html";
+}
+</script>
 
 </body>
 </html>
