@@ -47,7 +47,6 @@
             border: 2px solid green;
         }
 
-        /* NAHI POPUP */
         .black-popup {
             position: fixed;
             inset: 0;
@@ -68,7 +67,6 @@
             box-sizing: border-box;
         }
 
-        /* HAN QUESTION POPUP */
         .han-popup {
             position: fixed;
             inset: 0;
@@ -96,7 +94,6 @@
             color: white;
         }
 
-        /* ALLAH POPUP */
         .allah-popup {
             position: fixed;
             inset: 0;
@@ -118,7 +115,6 @@
             box-sizing: border-box;
         }
 
-        /* VIDEO */
         .video-screen {
             display: none;
             position: fixed;
@@ -148,7 +144,6 @@
             cursor: pointer;
         }
 
-        /* RANDOM BOXES */
         .mini-box {
             position: fixed;
             background: pink;
@@ -207,6 +202,10 @@
     <source src="simple.mp3" type="audio/mpeg">
 </audio>
 
+<audio id="audioQuick">
+    <source src="quick.mp3" type="audio/mpeg">
+</audio>
+
 <div class="box">
     <div class="main-text">
         Ap agar Mujse baat nahi krogi tab me apki help kese krunga bartan dhone me, smjha karo
@@ -217,20 +216,17 @@
     <button class="main-btn" onclick="clickNahi()">Nahi 🙃</button>
 </div>
 
-<!-- NAHI POPUP -->
 <div class="black-popup" id="nahiPopup">
     <div class="black-box">
         Ab jab ke tumne Nahi click kiya hai to Zyada options nhi hai tumare paas, so jao tum
     </div>
 </div>
 
-<!-- VIDEO -->
 <div class="video-screen" id="videoScreen">
     <div class="skip" onclick="skipVideo()">SKIP</div>
     <video id="videoPlayer" playsinline></video>
 </div>
 
-<!-- HAN QUESTION POPUP -->
 <div class="han-popup" id="hanPopup">
     <div class="han-box">
         Mere paas 100rs the, mene apko 50 diye aur apki bhen ko 50 diye theek hai,
@@ -241,7 +237,6 @@
     </div>
 </div>
 
-<!-- ALLAH POPUP -->
 <div class="allah-popup" id="allahPopup">
     <div class="allah-box"></div>
 </div>
@@ -251,12 +246,13 @@
     const nahiA = document.getElementById("audioNahi");
     const extraA = document.getElementById("audioExtra");
     const simpleA = document.getElementById("audioSimple");
+    const quickA = document.getElementById("audioQuick");
 
     const video = document.getElementById("videoPlayer");
     const videoScreen = document.getElementById("videoScreen");
 
     function stopAll() {
-        [hanA, nahiA, extraA, simpleA].forEach(a => {
+        [hanA, nahiA, extraA, simpleA, quickA].forEach(a => {
             a.pause();
             a.currentTime = 0;
         });
@@ -288,7 +284,6 @@
         videoScreen.style.display = "none";
     }
 
-    /* ✅ video khatam hone par bhi SKIP jaisa hi function chalega */
     video.onended = function () {
         skipVideo();
     };
@@ -334,6 +329,11 @@
 
             document.body.appendChild(b);
 
+            // quick sound per box appearance, no overlap
+            quickA.pause();
+            quickA.currentTime = 0;
+            quickA.play().catch(() => {});
+
             count++;
 
             if (count === 45) {
@@ -366,6 +366,7 @@
                     document.body.appendChild(final);
 
                     setTimeout(() => {
+                        stopAll();
                         window.location.href = "page7.html";
                     }, 5000);
                 }, 3000);
