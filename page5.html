@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 5 💜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: url("bg5.jpg") no-repeat center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: block;
+            margin: 8px auto;
+            width: 230px;
+            height: 46px;
+            background: transparent;
+            border: 2px solid;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teal {
+            border-color: teal;
+            color: teal;
+        }
+
+        .cream {
+            border-color: #f5e6cc;
+            color: #f5e6cc;
+        }
+
+        .lavender {
+            border-color: #b57edc;
+            color: #b57edc;
+        }
+
+        .next {
+            margin-top: 58px;
+            border: 2px solid green;
+            color: green;
+            width: 105px;
+            height: 34px;
+            font-size: 9px;
+        }
+
+        .moving-text {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        .m1 { animation: bounce1 3.2s infinite alternate linear; }
+        .m2 { animation: bounce2 3.6s infinite alternate linear; }
+        .m3 { animation: bounce3 3.4s infinite alternate linear; }
+        .m4 { animation: bounce4 3.8s infinite alternate linear; }
+        .m5 { animation: bounce5 3.3s infinite alternate linear; }
+        .m6 { animation: bounce6 3.7s infinite alternate linear; }
+
+        @keyframes bounce1 {
+            0%   { transform: translate(-50%, -50%) translate(-16px, -6px); }
+            25%  { transform: translate(-50%, -50%) translate(14px, -8px); }
+            50%  { transform: translate(-50%, -50%) translate(16px, 6px); }
+            75%  { transform: translate(-50%, -50%) translate(-12px, 8px); }
+            100% { transform: translate(-50%, -50%) translate(-16px, -6px); }
+        }
+
+        @keyframes bounce2 {
+            0%   { transform: translate(-50%, -50%) translate(12px, 8px); }
+            25%  { transform: translate(-50%, -50%) translate(-14px, 6px); }
+            50%  { transform: translate(-50%, -50%) translate(-10px, -8px); }
+            75%  { transform: translate(-50%, -50%) translate(15px, -6px); }
+            100% { transform: translate(-50%, -50%) translate(12px, 8px); }
+        }
+
+        @keyframes bounce3 {
+            0%   { transform: translate(-50%, -50%) translate(-10px, 7px); }
+            25%  { transform: translate(-50%, -50%) translate(15px, 5px); }
+            50%  { transform: translate(-50%, -50%) translate(12px, -7px); }
+            75%  { transform: translate(-50%, -50%) translate(-15px, -5px); }
+            100% { transform: translate(-50%, -50%) translate(-10px, 7px); }
+        }
+
+        @keyframes bounce4 {
+            0%   { transform: translate(-50%, -50%) translate(14px, -7px); }
+            25%  { transform: translate(-50%, -50%) translate(-12px, -6px); }
+            50%  { transform: translate(-50%, -50%) translate(-15px, 6px); }
+            75%  { transform: translate(-50%, -50%) translate(11px, 8px); }
+            100% { transform: translate(-50%, -50%) translate(14px, -7px); }
+        }
+
+        @keyframes bounce5 {
+            0%   { transform: translate(-50%, -50%) translate(-13px, -5px); }
+            25%  { transform: translate(-50%, -50%) translate(10px, -8px); }
+            50%  { transform: translate(-50%, -50%) translate(15px, 5px); }
+            75%  { transform: translate(-50%, -50%) translate(-11px, 8px); }
+            100% { transform: translate(-50%, -50%) translate(-13px, -5px); }
+        }
+
+        @keyframes bounce6 {
+            0%   { transform: translate(-50%, -50%) translate(10px, 6px); }
+            25%  { transform: translate(-50%, -50%) translate(-15px, 8px); }
+            50%  { transform: translate(-50%, -50%) translate(-12px, -6px); }
+            75%  { transform: translate(-50%, -50%) translate(14px, -8px); }
+            100% { transform: translate(-50%, -50%) translate(10px, 6px); }
+        }
+
+        .video-screen {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: black;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        video {
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .skip {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            border: 2px solid red;
+            color: red;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .choice {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .choice-box {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid white;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .choice-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .choice button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                width: 210px;
+                height: 44px;
+            }
+
+            .next {
+                width: 95px;
+                height: 32px;
+                font-size: 8px;
+            }
+
+            .title {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<audio id="bgAudio" autoplay loop>
+    <source src="audio5.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="mainBtns">
+
+    <div class="title">
+        MUJE MAUKA DO APKI TAREEF KRNE KA 💐
+    </div>
+
+    <button class="btn teal"><span class="moving-text m1">TAREEF NO. 1</span></button>
+    <button class="btn teal"><span class="moving-text m2">TAREEF NO. 2</span></button>
+
+    <button class="btn cream"><span class="moving-text m3">TAREEF NO. 3</span></button>
+    <button class="btn cream"><span class="moving-text m4">TAREEF NO. 4</span></button>
+
+    <button class="btn lavender"><span class="moving-text m5">TAREEF NO. 5</span></button>
+    <button class="btn lavender"><span class="moving-text m6">TAREEF NO. 6</span></button>
+
+    <button class="btn next" onclick="goNext()">NEXT PAGE</button>
+
+</div>
+
+<div class="video-screen" id="videoScreen">
+    <div class="skip" onclick="skipVideo()">SKIP</div>
+
+    <video id="videoPlayer"></video>
+
+    <div class="choice" id="choiceBtns" style="display:none;">
+        <div class="choice-box">
+            <div class="choice-title">PLEASE SELECT</div>
+            <button onclick="more()">Aur Tareef Sunna Chahti Hun</button>
+            <button onclick="enough()">Itna Tareef Kaafi Hai</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const bg = document.getElementById("bgAudio");
+    const video = document.getElementById("videoPlayer");
+    const screen = document.getElementById("videoScreen");
+    const main = document.getElementById("mainBtns");
+    const choice = document.getElementById("choiceBtns");
+
+    const buttons = document.querySelectorAll(".btn:not(.next)");
+
+    buttons.forEach((btn, index) => {
+        btn.onclick = () => playVideo(index + 1);
+    });
+
+    function stopAll() {
+        video.pause();
+        video.currentTime = 0;
+    }
+
+    function playVideo(num) {
+        bg.pause();
+        bg.currentTime = 0;
+
+        main.style.display = "none";
+        screen.style.display = "flex";
+        choice.style.display = "none";
+
+        video.src = "video5-" + num + ".mp4";
+        video.play();
+    }
+
+    video.addEventListener("ended", function () {
+        choice.style.display = "block";
+    });
+
+    function skipVideo() {
+        stopAll();
+        choice.style.display = "block";
+    }
+
+    function more() {
+        stopAll();
+        screen.style.display = "none";
+        main.style.display = "block";
+
+        bg.currentTime = 0;
+        bg.play();
+    }
+
+    function enough() {
+        stopAll();
+        bg.pause();
+        bg.currentTime = 0;
+        window.location.href = "page6.html";
+    }
+
+    function goNext() {
+        bg.pause();
+        bg.currentTime = 0;
+        window.location.href = "page6.html";
+    }
+</script>
+
+</body>
+</html>
