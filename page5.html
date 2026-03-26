@@ -21,9 +21,10 @@
         }
 
         .title {
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 15px;
+            font-weight: 900; /* extra bold */
+            font-size: 18px;
+            margin-bottom: 18px;
+            color: black;
         }
 
         .btn {
@@ -44,9 +45,9 @@
             color: teal;
         }
 
-        .cream {
-            border-color: #f5e6cc;
-            color: #f5e6cc;
+        .sky {
+            border-color: #00bfff;
+            color: #00bfff;
         }
 
         .lavender {
@@ -83,49 +84,37 @@
 
         @keyframes bounce1 {
             0%   { transform: translate(-50%, -50%) translate(-16px, -6px); }
-            25%  { transform: translate(-50%, -50%) translate(14px, -8px); }
             50%  { transform: translate(-50%, -50%) translate(16px, 6px); }
-            75%  { transform: translate(-50%, -50%) translate(-12px, 8px); }
             100% { transform: translate(-50%, -50%) translate(-16px, -6px); }
         }
 
         @keyframes bounce2 {
             0%   { transform: translate(-50%, -50%) translate(12px, 8px); }
-            25%  { transform: translate(-50%, -50%) translate(-14px, 6px); }
-            50%  { transform: translate(-50%, -50%) translate(-10px, -8px); }
-            75%  { transform: translate(-50%, -50%) translate(15px, -6px); }
+            50%  { transform: translate(-50%, -50%) translate(-12px, -8px); }
             100% { transform: translate(-50%, -50%) translate(12px, 8px); }
         }
 
         @keyframes bounce3 {
             0%   { transform: translate(-50%, -50%) translate(-10px, 7px); }
-            25%  { transform: translate(-50%, -50%) translate(15px, 5px); }
-            50%  { transform: translate(-50%, -50%) translate(12px, -7px); }
-            75%  { transform: translate(-50%, -50%) translate(-15px, -5px); }
+            50%  { transform: translate(-50%, -50%) translate(10px, -7px); }
             100% { transform: translate(-50%, -50%) translate(-10px, 7px); }
         }
 
         @keyframes bounce4 {
             0%   { transform: translate(-50%, -50%) translate(14px, -7px); }
-            25%  { transform: translate(-50%, -50%) translate(-12px, -6px); }
-            50%  { transform: translate(-50%, -50%) translate(-15px, 6px); }
-            75%  { transform: translate(-50%, -50%) translate(11px, 8px); }
+            50%  { transform: translate(-50%, -50%) translate(-14px, 7px); }
             100% { transform: translate(-50%, -50%) translate(14px, -7px); }
         }
 
         @keyframes bounce5 {
             0%   { transform: translate(-50%, -50%) translate(-13px, -5px); }
-            25%  { transform: translate(-50%, -50%) translate(10px, -8px); }
-            50%  { transform: translate(-50%, -50%) translate(15px, 5px); }
-            75%  { transform: translate(-50%, -50%) translate(-11px, 8px); }
+            50%  { transform: translate(-50%, -50%) translate(13px, 5px); }
             100% { transform: translate(-50%, -50%) translate(-13px, -5px); }
         }
 
         @keyframes bounce6 {
             0%   { transform: translate(-50%, -50%) translate(10px, 6px); }
-            25%  { transform: translate(-50%, -50%) translate(-15px, 8px); }
-            50%  { transform: translate(-50%, -50%) translate(-12px, -6px); }
-            75%  { transform: translate(-50%, -50%) translate(14px, -8px); }
+            50%  { transform: translate(-50%, -50%) translate(-10px, -6px); }
             100% { transform: translate(-50%, -50%) translate(10px, 6px); }
         }
 
@@ -166,37 +155,12 @@
             border: 2px solid white;
             padding: 15px;
             margin-top: 15px;
-            text-align: center;
         }
 
         .choice-title {
             font-weight: bold;
             margin-bottom: 10px;
             color: white;
-        }
-
-        .choice button {
-            margin: 5px;
-            padding: 10px 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        @media (max-width: 480px) {
-            .btn {
-                width: 210px;
-                height: 44px;
-            }
-
-            .next {
-                width: 95px;
-                height: 32px;
-                font-size: 8px;
-            }
-
-            .title {
-                font-size: 15px;
-            }
         }
     </style>
 </head>
@@ -210,14 +174,14 @@
 <div class="container" id="mainBtns">
 
     <div class="title">
-        MUJE MAUKA DO APKI TAREEF KRNE KA 💐
+        𝕄𝕌𝕁𝔼 𝕄𝔸𝕌𝕂𝔸 𝔻𝕆 𝔸ℙ𝕂𝕀 𝕋𝔸ℝ𝔼𝔼𝔽 𝕂ℝℕ𝔼 𝕂𝔸 💐
     </div>
 
     <button class="btn teal"><span class="moving-text m1">TAREEF NO. 1</span></button>
     <button class="btn teal"><span class="moving-text m2">TAREEF NO. 2</span></button>
 
-    <button class="btn cream"><span class="moving-text m3">TAREEF NO. 3</span></button>
-    <button class="btn cream"><span class="moving-text m4">TAREEF NO. 4</span></button>
+    <button class="btn sky"><span class="moving-text m3">TAREEF NO. 3</span></button>
+    <button class="btn sky"><span class="moving-text m4">TAREEF NO. 4</span></button>
 
     <button class="btn lavender"><span class="moving-text m5">TAREEF NO. 5</span></button>
     <button class="btn lavender"><span class="moving-text m6">TAREEF NO. 6</span></button>
@@ -291,13 +255,11 @@
     function enough() {
         stopAll();
         bg.pause();
-        bg.currentTime = 0;
         window.location.href = "page6.html";
     }
 
     function goNext() {
         bg.pause();
-        bg.currentTime = 0;
         window.location.href = "page6.html";
     }
 </script>
