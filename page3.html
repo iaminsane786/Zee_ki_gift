@@ -8,6 +8,7 @@
         body {
             margin: 0;
             padding: 20px;
+            padding-top: 40px;
             min-height: 100vh;
             background-image: url("./bg3.jpg");
             background-size: cover;
@@ -15,8 +16,9 @@
             background-repeat: no-repeat;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             font-family: Arial, sans-serif;
+            box-sizing: border-box;
         }
 
         .box {
@@ -55,8 +57,14 @@
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 14px;
+                padding-top: 25px;
+            }
+
             .box {
                 width: 94vw;
+                max-height: 88vh;
                 padding: 16px;
             }
 
@@ -123,7 +131,6 @@
         audio3.currentTime = 0;
     }
 
-    // audio4 khatam hone ke baad audio3 start hoga
     audio4.addEventListener("ended", function () {
         audio3.pause();
         audio3.currentTime = 0;
