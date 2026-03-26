@@ -9,12 +9,10 @@
             margin: 0;
             padding: 20px;
             min-height: 100vh;
-
             background-image: url("./bg3.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,35 +25,25 @@
             overflow-y: auto;
             padding: 20px;
             text-align: center;
-
-            background: none; /* 🔥 FULL transparent */
+            background: none;
             border: 2px solid black;
+            box-sizing: border-box;
         }
 
         .text {
             font-weight: bold;
-            font-size: 10px; /* 🔥 smaller */
+            font-size: 11px;
             line-height: 1.8;
             color: black;
             margin-bottom: 20px;
         }
 
-        .audio-btn,
         .next-btn {
             padding: 10px 20px;
             font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             background: transparent;
-        }
-
-        .audio-btn {
-            border: 2px solid black;
-            color: black;
-            margin-bottom: 10px;
-        }
-
-        .next-btn {
             border: 2px solid green;
             color: green;
         }
@@ -65,21 +53,37 @@
             flex-direction: column;
             align-items: center;
         }
+
+        @media (max-width: 480px) {
+            .box {
+                width: 94vw;
+                padding: 16px;
+            }
+
+            .text {
+                font-size: 12px;
+                line-height: 1.75;
+            }
+
+            .next-btn {
+                font-size: 13px;
+                padding: 10px 18px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-<audio id="page3Music" autoplay loop>
-    <source src="audio3.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="clickMusic" loop>
+<audio id="audio4" autoplay>
     <source src="audio4.mp3" type="audio/mpeg">
 </audio>
 
-<div class="box">
+<audio id="audio3" loop>
+    <source src="audio3.mp3" type="audio/mpeg">
+</audio>
 
+<div class="box">
     <div class="text">
         Mera naam... khair, naam mein kya rakha hai !! Muje log pyaar se Zee💗 keh kar bulate hain.
         Shayad tum soch rahe hoge ke main ye sab tumhein kyun bata raha hun 💭 ? Baat darasal
@@ -103,34 +107,33 @@
     </div>
 
     <div class="btn-wrap">
-        <button class="audio-btn" onclick="playClickAudio()">PLAY AUDIO</button>
         <button class="next-btn" onclick="goNext()">NEXT</button>
     </div>
-
 </div>
 
 <script>
-function playClickAudio() {
-    let bg = document.getElementById("page3Music");
-    let click = document.getElementById("clickMusic");
+    const audio4 = document.getElementById("audio4");
+    const audio3 = document.getElementById("audio3");
 
-    bg.pause();
-    bg.currentTime = 0;
+    function stopAllAudio() {
+        audio4.pause();
+        audio4.currentTime = 0;
 
-    click.pause();
-    click.currentTime = 0;
-    click.play();
-}
+        audio3.pause();
+        audio3.currentTime = 0;
+    }
 
-function goNext() {
-    let bg = document.getElementById("page3Music");
-    let click = document.getElementById("clickMusic");
+    // audio4 khatam hone ke baad audio3 start hoga
+    audio4.addEventListener("ended", function () {
+        audio3.pause();
+        audio3.currentTime = 0;
+        audio3.play();
+    });
 
-    bg.pause();
-    click.pause();
-
-    window.location.href = "page4.html";
-}
+    function goNext() {
+        stopAllAudio();
+        window.location.href = "page4.html";
+    }
 </script>
 
 </body>
