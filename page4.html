@@ -26,7 +26,6 @@
         video {
             width: 100%;
             display: block;
-            /* ❌ border removed */
         }
 
         .next-btn {
@@ -35,8 +34,8 @@
             font-size: 14px;
             font-weight: bold;
             background: transparent;
-            border: 2px solid green;
-            color: green;
+            border: 2px solid white; /* 🔥 white border */
+            color: white;            /* 🔥 white text */
             cursor: pointer;
         }
 
@@ -64,8 +63,14 @@
     </div>
 
     <script>
+        const video = document.getElementById("video4");
+
+        // 🔥 Auto go to page6 when video ends
+        video.addEventListener("ended", function () {
+            window.location.href = "page6.html";
+        });
+
         function goNext() {
-            const video = document.getElementById("video4");
             video.pause();
             video.currentTime = 0;
             window.location.href = "page5.html";
