@@ -15,7 +15,6 @@
             align-items: center;
             font-family: Arial, sans-serif;
             overflow: hidden;
-            box-sizing: border-box;
         }
 
         .box {
@@ -24,18 +23,16 @@
             border: 2px solid green;
             text-align: center;
             background: transparent;
-            box-sizing: border-box;
         }
 
         .main-text {
             font-weight: bold;
             line-height: 1.7;
-            color: black;
             margin-bottom: 18px;
         }
 
         button {
-            margin: 10px 6px 0 6px;
+            margin: 10px;
             padding: 10px 14px;
             font-weight: bold;
             cursor: pointer;
@@ -47,7 +44,6 @@
             border: 2px solid green;
         }
 
-        /* NAHI POPUP */
         .black-popup {
             position: fixed;
             inset: 0;
@@ -55,39 +51,30 @@
             justify-content: center;
             align-items: center;
             background: rgba(0,0,0,0.65);
-            z-index: 20;
         }
 
         .black-box {
             background: black;
             color: white;
             padding: 20px;
-            text-align: center;
             font-weight: bold;
-            max-width: 90%;
-            box-sizing: border-box;
+            text-align: center;
         }
 
-        /* HAN QUESTION POPUP */
         .han-popup {
             position: fixed;
             inset: 0;
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 20;
-            background: rgba(0,0,0,0.15);
         }
 
         .han-box {
-            width: min(90vw, 420px);
             background: black;
             color: white;
             padding: 20px;
-            text-align: center;
             font-weight: bold;
-            line-height: 1.8;
-            box-sizing: border-box;
+            text-align: center;
         }
 
         .pink-btn {
@@ -96,29 +83,22 @@
             color: white;
         }
 
-        /* ALLAH POPUP */
         .allah-popup {
             position: fixed;
             inset: 0;
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 25;
-            background: rgba(0,0,0,0.15);
         }
 
         .allah-box {
-            width: min(88vw, 420px);
             background: white;
             color: black;
             padding: 20px;
-            text-align: center;
             font-weight: bold;
-            line-height: 1.8;
-            box-sizing: border-box;
+            text-align: center;
         }
 
-        /* VIDEO */
         .video-screen {
             display: none;
             position: fixed;
@@ -127,13 +107,10 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            z-index: 30;
         }
 
         video {
             width: 90%;
-            max-width: 500px;
-            display: block;
         }
 
         .skip {
@@ -142,95 +119,49 @@
             right: 20px;
             border: 2px solid red;
             color: red;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 14px;
-            font-weight: bold;
+            padding: 8px;
             cursor: pointer;
         }
 
-        /* RANDOM BOXES */
         .mini-box {
             position: fixed;
             background: pink;
-            color: black;
-            padding: 8px 10px;
+            padding: 8px;
             font-size: 10px;
             font-weight: bold;
             border: 1px solid black;
-            z-index: 60;
-            box-sizing: border-box;
-            max-width: 150px;
-            text-align: center;
-        }
-
-        @media (max-width: 480px) {
-            .box {
-                width: 94vw;
-                padding: 16px;
-            }
-
-            .main-text,
-            .han-box,
-            .allah-box,
-            .black-box {
-                font-size: 14px;
-            }
-
-            button {
-                font-size: 13px;
-                padding: 9px 12px;
-            }
-
-            .mini-box {
-                font-size: 9px;
-                max-width: 130px;
-            }
         }
     </style>
 </head>
 
 <body>
 
-<audio id="audioHan">
-    <source src="han.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="audioNahi">
-    <source src="nahi.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="audioExtra">
-    <source src="extra.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="audioAllah">
-    <source src="allah.mp3" type="audio/mpeg">
-</audio>
+<audio id="audioHan"><source src="han.mp3"></audio>
+<audio id="audioNahi"><source src="nahi.mp3"></audio>
+<audio id="audioExtra"><source src="extra.mp3"></audio>
+<audio id="audioSimple"><source src="simple.mp3"></audio>
 
 <div class="box">
     <div class="main-text">
         Ap agar Mujse baat nahi krogi tab me apki help kese krunga bartan dhone me, smjha karo
-        and wese bi apko ko nahi lgta hamara ghar ka bijli ka bill 1 aaana chaiye !!! 🥲 🦋
+        and wese bi apko nahi lgta hamara ghar ka bijli ka bill 1 aaana chaiye !!! 🥲 🦋
     </div>
 
     <button class="main-btn" onclick="clickHan()">Han Shyad 💍</button>
     <button class="main-btn" onclick="clickNahi()">Nahi 🙃</button>
 </div>
 
-<!-- NAHI POPUP -->
 <div class="black-popup" id="nahiPopup">
     <div class="black-box">
         Ab jab ke tumne Nahi click kiya hai to Zyada options nhi hai tumare paas, so jao tum
     </div>
 </div>
 
-<!-- VIDEO -->
 <div class="video-screen" id="videoScreen">
     <div class="skip" onclick="skipVideo()">SKIP</div>
-    <video id="videoPlayer" playsinline></video>
+    <video id="videoPlayer"></video>
 </div>
 
-<!-- HAN QUESTION POPUP -->
 <div class="han-popup" id="hanPopup">
     <div class="han-box">
         Mere paas 100rs the, mene apko 50 diye aur apki bhen ko 50 diye theek hai,
@@ -241,138 +172,118 @@
     </div>
 </div>
 
-<!-- ALLAH POPUP -->
 <div class="allah-popup" id="allahPopup">
     <div class="allah-box"></div>
 </div>
 
 <script>
-    const hanA = document.getElementById("audioHan");
-    const nahiA = document.getElementById("audioNahi");
-    const extraA = document.getElementById("audioExtra");
-    const allahA = document.getElementById("audioAllah");
+const hanA = document.getElementById("audioHan");
+const nahiA = document.getElementById("audioNahi");
+const extraA = document.getElementById("audioExtra");
+const simpleA = document.getElementById("audioSimple");
 
-    const video = document.getElementById("videoPlayer");
-    const videoScreen = document.getElementById("videoScreen");
+const video = document.getElementById("videoPlayer");
+const videoScreen = document.getElementById("videoScreen");
 
-    function stopAllAudio() {
-        [hanA, nahiA, extraA, allahA].forEach(a => {
-            a.pause();
-            a.currentTime = 0;
-        });
-    }
+function stopAll(){
+    [hanA,nahiA,extraA,simpleA].forEach(a=>{
+        a.pause();
+        a.currentTime=0;
+    });
+}
 
-    function clickNahi() {
-        stopAllAudio();
-        nahiA.play().catch(() => {});
+function clickNahi(){
+    stopAll();
+    nahiA.play();
 
-        let popup = document.getElementById("nahiPopup");
-        popup.style.display = "flex";
+    let p=document.getElementById("nahiPopup");
+    p.style.display="flex";
 
-        setTimeout(() => {
-            popup.style.display = "none";
-            playVideo();
-        }, 5000);
-    }
+    setTimeout(()=>{
+        p.style.display="none";
+        videoScreen.style.display="flex";
+        video.src="video6.mp4";
+        video.play();
+    },5000);
+}
 
-    function playVideo() {
-        videoScreen.style.display = "flex";
-        video.src = "video6.mp4";
-        video.currentTime = 0;
-        video.play().catch(() => {});
-    }
+function skipVideo(){
+    video.pause();
+    videoScreen.style.display="none";
+}
 
-    video.onended = function() {
-        video.pause();
-        video.currentTime = 0;
-        videoScreen.style.display = "none";
-    };
+function clickHan(){
+    stopAll();
+    hanA.play();
+    document.getElementById("hanPopup").style.display="flex";
+}
 
-    function skipVideo() {
-        video.pause();
-        video.currentTime = 0;
-        videoScreen.style.display = "none";
-    }
+function pata(){
+    stopAll();
+    extraA.play();
+}
 
-    function clickHan() {
-        stopAllAudio();
-        hanA.play().catch(() => {});
-        document.getElementById("hanPopup").style.display = "flex";
-    }
+function allah(){
+    stopAll();
+    simpleA.play();
 
-    function pata() {
-        stopAllAudio();
-        extraA.play().catch(() => {});
-    }
+    document.getElementById("hanPopup").style.display="none";
 
-    function allah() {
-        stopAllAudio();
-        allahA.play().catch(() => {});
-        document.getElementById("hanPopup").style.display = "none";
+    let popup=document.getElementById("allahPopup");
+    let box=popup.querySelector(".allah-box");
 
-        let popup = document.getElementById("allahPopup");
-        let popupBox = popup.querySelector(".allah-box");
+    box.innerHTML="YA ALLAH apne is BeautyPhool shaks ko meri qismat bana dijiye";
+    popup.style.display="flex";
 
-        popupBox.innerHTML = "YA ALLAH apne is BeautyPhool shaks ko meri qismat bana dijiye";
-        popup.style.display = "flex";
+    setTimeout(()=>{
+        popup.style.display="none";
 
-        setTimeout(() => {
-            popup.style.display = "none";
-            startRandomBoxes();
-        }, 5500);
-    }
+        let count=0;
 
-    function startRandomBoxes() {
-        let count = 0;
+        let i=setInterval(()=>{
+            let b=document.createElement("div");
+            b.className="mini-box";
 
-        let interval = setInterval(() => {
-            let box = document.createElement("div");
-            box.className = "mini-box";
-            box.innerHTML = "YA ALLAH 💜<br>isko mera banado pls,<br>Ameen 🤲💞";
+            b.innerHTML="YA ALLAH 💜<br>isko mera banado pls,<br>Ameen 🤲💞";
 
-            box.style.top = Math.random() * 88 + "%";
-            box.style.left = Math.random() * 84 + "%";
+            b.style.top=Math.random()*90+"%";
+            b.style.left=Math.random()*90+"%";
 
-            document.body.appendChild(box);
+            document.body.appendChild(b);
 
             count++;
 
-            if (count === 45) {
-                clearInterval(interval);
+            if(count==45){
+                clearInterval(i);
 
-                setTimeout(() => {
-                    let finalPopup = document.createElement("div");
-                    finalPopup.style.position = "fixed";
-                    finalPopup.style.inset = "0";
-                    finalPopup.style.display = "flex";
-                    finalPopup.style.justifyContent = "center";
-                    finalPopup.style.alignItems = "center";
-                    finalPopup.style.background = "rgba(0,0,0,0.65)";
-                    finalPopup.style.zIndex = "100";
+                setTimeout(()=>{
+                    let final=document.createElement("div");
+                    final.style.position="fixed";
+                    final.style.inset="0";
+                    final.style.display="flex";
+                    final.style.justifyContent="center";
+                    final.style.alignItems="center";
+                    final.style.background="rgba(0,0,0,0.7)";
 
-                    finalPopup.innerHTML = `
-                        <div style="
-                            background:black;
-                            color:white;
-                            padding:20px;
-                            text-align:center;
-                            font-weight:bold;
-                            max-width:90%;
-                            box-sizing:border-box;
-                        ">
+                    final.innerHTML=`
+                        <div style="background:black;color:white;padding:20px;font-weight:bold;">
                             Allah Dua Qubool tabhi krna jab ye shaks khud raazi ho
                         </div>
                     `;
 
-                    document.body.appendChild(finalPopup);
+                    document.body.appendChild(final);
 
-                    setTimeout(() => {
-                        window.location.href = "page7.html";
-                    }, 5000);
-                }, 3000);
+                    setTimeout(()=>{
+                        window.location.href="page7.html";
+                    },5000);
+
+                },3000);
             }
-        }, 250);
-    }
+
+        },250);
+
+    },5500);
+}
 </script>
 
 </body>
