@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 6 💜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: url("bg6.jpg") no-repeat center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 320px;
+            padding: 20px;
+            border: 2px solid green;
+            text-align: center;
+            background: transparent;
+            box-sizing: border-box;
+        }
+
+        .main-text {
+            font-weight: bold;
+            line-height: 1.7;
+            color: black;
+            margin-bottom: 18px;
+        }
+
+        button {
+            margin: 10px 6px 0 6px;
+            padding: 10px 14px;
+            font-weight: bold;
+            cursor: pointer;
+            background: transparent;
+            color: black;
+        }
+
+        .main-btn {
+            border: 2px solid green;
+        }
+
+        /* NAHI POPUP */
+        .black-popup {
+            position: fixed;
+            inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.65);
+            z-index: 20;
+        }
+
+        .black-box {
+            background: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            max-width: 90%;
+            box-sizing: border-box;
+        }
+
+        /* HAN QUESTION POPUP */
+        .han-popup {
+            position: fixed;
+            inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .han-box {
+            width: min(90vw, 420px);
+            background: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            line-height: 1.8;
+            box-sizing: border-box;
+        }
+
+        .pink-btn {
+            border: 2px solid hotpink;
+            background: transparent;
+            color: white;
+        }
+
+        /* ALLAH POPUP */
+        .allah-popup {
+            position: fixed;
+            inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 25;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .allah-box {
+            width: min(88vw, 420px);
+            background: white;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            line-height: 1.8;
+            box-sizing: border-box;
+        }
+
+        /* VIDEO */
+        .video-screen {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: black;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 30;
+        }
+
+        video {
+            width: 90%;
+            max-width: 500px;
+            display: block;
+        }
+
+        .skip {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border: 2px solid red;
+            color: red;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* RANDOM BOXES */
+        .mini-box {
+            position: fixed;
+            background: pink;
+            color: black;
+            padding: 8px 10px;
+            font-size: 10px;
+            font-weight: bold;
+            border: 1px solid black;
+            z-index: 60;
+            box-sizing: border-box;
+            max-width: 150px;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .box {
+                width: 94vw;
+                padding: 16px;
+            }
+
+            .main-text,
+            .han-box,
+            .allah-box,
+            .black-box {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 13px;
+                padding: 9px 12px;
+            }
+
+            .mini-box {
+                font-size: 9px;
+                max-width: 130px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<audio id="audioHan">
+    <source src="han.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="audioNahi">
+    <source src="nahi.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="audioExtra">
+    <source src="extra.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="audioAllah">
+    <source src="allah.mp3" type="audio/mpeg">
+</audio>
+
+<div class="box">
+    <div class="main-text">
+        Ap agar Mujse baat nahi krogi tab me apki help kese krunga bartan dhone me, smjha karo
+        and wese bi apko ko nahi lgta hamara ghar ka bijli ka bill 1 aaana chaiye !!! 🥲 🦋
+    </div>
+
+    <button class="main-btn" onclick="clickHan()">Han Shyad 💍</button>
+    <button class="main-btn" onclick="clickNahi()">Nahi 🙃</button>
+</div>
+
+<!-- NAHI POPUP -->
+<div class="black-popup" id="nahiPopup">
+    <div class="black-box">
+        Ab jab ke tumne Nahi click kiya hai to Zyada options nhi hai tumare paas, so jao tum
+    </div>
+</div>
+
+<!-- VIDEO -->
+<div class="video-screen" id="videoScreen">
+    <div class="skip" onclick="skipVideo()">SKIP</div>
+    <video id="videoPlayer" playsinline></video>
+</div>
+
+<!-- HAN QUESTION POPUP -->
+<div class="han-popup" id="hanPopup">
+    <div class="han-box">
+        Mere paas 100rs the, mene apko 50 diye aur apki bhen ko 50 diye theek hai,
+        ab mera sawaal ye hai ki aap btao aap itne Sundar kyu ho ! 😶‍🌫️ 😅
+        <br><br>
+        <button class="pink-btn" onclick="allah()">Allah ne banaya ha</button>
+        <button class="pink-btn" onclick="pata()">pta nahi</button>
+    </div>
+</div>
+
+<!-- ALLAH POPUP -->
+<div class="allah-popup" id="allahPopup">
+    <div class="allah-box"></div>
+</div>
+
+<script>
+    const hanA = document.getElementById("audioHan");
+    const nahiA = document.getElementById("audioNahi");
+    const extraA = document.getElementById("audioExtra");
+    const allahA = document.getElementById("audioAllah");
+
+    const video = document.getElementById("videoPlayer");
+    const videoScreen = document.getElementById("videoScreen");
+
+    function stopAllAudio() {
+        [hanA, nahiA, extraA, allahA].forEach(a => {
+            a.pause();
+            a.currentTime = 0;
+        });
+    }
+
+    function clickNahi() {
+        stopAllAudio();
+        nahiA.play().catch(() => {});
+
+        let popup = document.getElementById("nahiPopup");
+        popup.style.display = "flex";
+
+        setTimeout(() => {
+            popup.style.display = "none";
+            playVideo();
+        }, 5000);
+    }
+
+    function playVideo() {
+        videoScreen.style.display = "flex";
+        video.src = "video6.mp4";
+        video.currentTime = 0;
+        video.play().catch(() => {});
+    }
+
+    video.onended = function() {
+        video.pause();
+        video.currentTime = 0;
+        videoScreen.style.display = "none";
+    };
+
+    function skipVideo() {
+        video.pause();
+        video.currentTime = 0;
+        videoScreen.style.display = "none";
+    }
+
+    function clickHan() {
+        stopAllAudio();
+        hanA.play().catch(() => {});
+        document.getElementById("hanPopup").style.display = "flex";
+    }
+
+    function pata() {
+        stopAllAudio();
+        extraA.play().catch(() => {});
+    }
+
+    function allah() {
+        stopAllAudio();
+        allahA.play().catch(() => {});
+        document.getElementById("hanPopup").style.display = "none";
+
+        let popup = document.getElementById("allahPopup");
+        let popupBox = popup.querySelector(".allah-box");
+
+        popupBox.innerHTML = "YA ALLAH apne is BeautyPhool shaks ko meri qismat bana dijiye";
+        popup.style.display = "flex";
+
+        setTimeout(() => {
+            popup.style.display = "none";
+            startRandomBoxes();
+        }, 5500);
+    }
+
+    function startRandomBoxes() {
+        let count = 0;
+
+        let interval = setInterval(() => {
+            let box = document.createElement("div");
+            box.className = "mini-box";
+            box.innerHTML = "YA ALLAH 💜<br>isko mera banado pls,<br>Ameen 🤲💞";
+
+            box.style.top = Math.random() * 88 + "%";
+            box.style.left = Math.random() * 84 + "%";
+
+            document.body.appendChild(box);
+
+            count++;
+
+            if (count === 45) {
+                clearInterval(interval);
+
+                setTimeout(() => {
+                    let finalPopup = document.createElement("div");
+                    finalPopup.style.position = "fixed";
+                    finalPopup.style.inset = "0";
+                    finalPopup.style.display = "flex";
+                    finalPopup.style.justifyContent = "center";
+                    finalPopup.style.alignItems = "center";
+                    finalPopup.style.background = "rgba(0,0,0,0.65)";
+                    finalPopup.style.zIndex = "100";
+
+                    finalPopup.innerHTML = `
+                        <div style="
+                            background:black;
+                            color:white;
+                            padding:20px;
+                            text-align:center;
+                            font-weight:bold;
+                            max-width:90%;
+                            box-sizing:border-box;
+                        ">
+                            Allah Dua Qubool tabhi krna jab ye shaks khud raazi ho
+                        </div>
+                    `;
+
+                    document.body.appendChild(finalPopup);
+
+                    setTimeout(() => {
+                        window.location.href = "page7.html";
+                    }, 5000);
+                }, 3000);
+            }
+        }, 250);
+    }
+</script>
+
+</body>
+</html>
