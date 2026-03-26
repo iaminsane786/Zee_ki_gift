@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 4 💜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .video-box {
+            width: min(92vw, 520px);
+            text-align: center;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            border: 2px solid white;
+        }
+
+        .next-btn {
+            margin-top: 18px;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            background: transparent;
+            border: 2px solid green;
+            color: green;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .video-box {
+                width: 95vw;
+            }
+
+            .next-btn {
+                font-size: 13px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="video-box">
+        <video id="video4" autoplay playsinline>
+            <source src="video4.mp4" type="video/mp4">
+        </video>
+
+        <button class="next-btn" onclick="goNext()">NEXT</button>
+    </div>
+
+    <script>
+        function goNext() {
+            const video = document.getElementById("video4");
+            video.pause();
+            video.currentTime = 0;
+            window.location.href = "page5.html";
+        }
+    </script>
+
+</body>
+</html>
