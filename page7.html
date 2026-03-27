@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 7 💜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .popup-layer,
+        .media-layer {
+            position: fixed;
+            inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-box {
+            padding: 18px 22px;
+            font-weight: bold;
+            text-align: center;
+            max-width: 88vw;
+            box-sizing: border-box;
+        }
+
+        .rect-top {
+            position: absolute;
+            top: 10vh;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(84vw, 420px);
+        }
+
+        .skip-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: red;
+            border: 2px solid red;
+            padding: 8px 14px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .media-wrap {
+            width: 90vw;
+            max-width: 560px;
+            text-align: center;
+        }
+
+        video,
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        .white { background: white; color: black; }
+        .purple { background: purple; color: white; }
+        .cyan { background: cyan; color: black; }
+        .lightyellow { background: #fff8b5; color: black; }
+        .lime { background: lime; color: black; }
+        .pink { background: pink; color: black; }
+        .lightbrown { background: #d2b48c; color: black; }
+
+        @media (max-width: 480px) {
+            .popup-box {
+                font-size: 14px;
+                padding: 16px 18px;
+            }
+
+            .skip-btn {
+                top: 14px;
+                right: 14px;
+                padding: 7px 12px;
+                font-size: 12px;
+            }
+
+            .rect-top {
+                top: 8vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- POPUP LAYER -->
+    <div class="popup-layer" id="popupLayer">
+        <div class="popup-box" id="popupBox"></div>
+    </div>
+
+    <!-- MEDIA LAYER -->
+    <div class="media-layer" id="mediaLayer">
+        <button class="skip-btn" id="skipBtn" onclick="skipStep()">SKIP</button>
+        <div class="media-wrap" id="mediaWrap"></div>
+    </div>
+
+    <script>
+        const popupLayer = document.getElementById("popupLayer");
+        const popupBox = document.getElementById("popupBox");
+        const mediaLayer = document.getElementById("mediaLayer");
+        const mediaWrap = document.getElementById("mediaWrap");
+
+        let currentStep = 0;
+        let activeTimeout = null;
+        let activeVideo = null;
+
+        const steps = [
+            { type: "popup", className: "white", text: "Ab Me Tumhe Faida batata hun Mere Saath Rhene Ka 😇 😉", duration: 4400, topRect: false },
+
+            { type: "video", src: "video7-1.mp4", duration: 4000 },
+
+            { type: "popup", className: "purple", text: "Oh Sorry Ye Kya Chal gya 😅", duration: 2800, topRect: true },
+
+            { type: "popup", className: "purple", text: "Msti Mzak krke Khusi se rkhunga 💞", duration: 3000, topRect: false },
+
+            { type: "video", src: "video7-2.mp4", untilEnd: true },
+
+            { type: "popup", className: "cyan", text: "Khane Khud se banake Khila skta hun", duration: 2800, topRect: false },
+
+            { type: "video", src: "video7-3.mp4", untilEnd: true },
+
+            { type: "popup", className: "lightyellow", text: "I will treat u like this song 🦋", duration: 2200, topRect: false },
+
+            { type: "popup", className: "lime", text: "Also This🤌🏻🪻✨", duration: 1500, topRect: false },
+
+            { type: "video", src: "video7-4.mp4", untilEnd: true },
+
+            { type: "popup", className: "pink", text: "Can be Us ! Agar Tum Chaho ? 👩‍❤️‍👨", duration: 1700, topRect: false },
+
+            { type: "popup", className: "lightbrown", text: "Ab ye Dekho", duration: 1800, topRect: false },
+
+            { type: "image", src: "image7.jpg", duration: 6000 },
+
+            { type: "video", src: "video7-5.mp4", untilEnd: true },
+
+            { type: "end", next: "page8.html" }
+        ];
+
+        function clearActive() {
+            if (activeTimeout) {
+                clearTimeout(activeTimeout);
+                activeTimeout = null;
+            }
+            if (activeVideo) {
+                activeVideo.pause();
+                activeVideo.currentTime = 0;
+                activeVideo = null;
+            }
+            popupLayer.style.display = "none";
+            mediaLayer.style.display = "none";
+            mediaWrap.innerHTML = "";
+            popupBox.className = "popup-box";
+        }
+
+        function runStep(index) {
+            clearActive();
+            currentStep = index;
+
+            const step = steps[index];
+            if (!step) return;
+
+            if (step.type === "popup") {
+                popupLayer.style.display = "flex";
+                popupBox.className = "popup-box " + step.className + (step.topRect ? " rect-top" : "");
+                popupBox.innerHTML = step.text;
+
+                activeTimeout = setTimeout(() => {
+                    runStep(index + 1);
+                }, step.duration);
+            }
+
+            else if (step.type === "video") {
+                mediaLayer.style.display = "flex";
+                const video = document.createElement("video");
+                video.src = step.src;
+                video.autoplay = true;
+                video.playsInline = true;
+                mediaWrap.appendChild(video);
+                activeVideo = video;
+
+                if (step.untilEnd) {
+                    video.onended = () => runStep(index + 1);
+                } else {
+                    activeTimeout = setTimeout(() => {
+                        runStep(index + 1);
+                    }, step.duration);
+                }
+            }
+
+            else if (step.type === "image") {
+                mediaLayer.style.display = "flex";
+                const img = document.createElement("img");
+                img.src = step.src;
+                img.alt = "special image";
+                mediaWrap.appendChild(img);
+
+                activeTimeout = setTimeout(() => {
+                    runStep(index + 1);
+                }, step.duration);
+            }
+
+            else if (step.type === "end") {
+                window.location.href = step.next;
+            }
+        }
+
+        function skipStep() {
+            runStep(currentStep + 1);
+        }
+
+        // start
+        runStep(0);
+    </script>
+
+</body>
+</html>
