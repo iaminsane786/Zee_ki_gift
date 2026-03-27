@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Final Page 💜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: url("bg8.jpg") no-repeat center/cover;
+            font-family: Arial, sans-serif;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.35);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            padding-top: 35px;
+            padding-bottom: 30px;
+        }
+
+        .para-box {
+            width: 100%;
+            padding: 18px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid limegreen;
+            box-sizing: border-box;
+        }
+
+        .para-text {
+            margin: 0;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: left;
+            color: white;
+        }
+
+        .btn {
+            margin-top: 10px;
+            padding: 10px 22px;
+            font-weight: bold;
+            border: 2px solid red;
+            background: transparent;
+            color: red;
+            cursor: pointer;
+        }
+
+        .video-layer {
+            position: fixed;
+            inset: 0;
+            background: black;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        }
+
+        video {
+            width: 90%;
+            max-width: 500px;
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 14px;
+            }
+
+            .container {
+                gap: 18px;
+                padding-top: 20px;
+            }
+
+            .para-box {
+                padding: 14px;
+            }
+
+            .para-text {
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .btn {
+                font-size: 13px;
+                padding: 9px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<audio id="bgAudio" autoplay loop>
+    <source src="guzarish.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+    <div class="para-box">
+        <p class="para-text">
+            Jo Kuch Mene Feel Kiya Tha Mene Keh Diya 😊, Me MATHS me kamjor zrur hun but firvi Tumhari Shi Value bata skta hun 🦋🤌🏻✨ Me Risk Le rha hun - YA TO TUM PAT JAOGI : YA ME PEET JAUNGA 🎃 Faisala Tumhare Haath me hai 💐, Agar apko koi interest nhai hai to muje apse Loan lena pdega tabhi apka interest badega mujpe 😅 Now No Regrets because I did My Best 💞 😌
+        </p>
+    </div>
+
+    <div class="para-box">
+        <p class="para-text">
+            Agar app ksii aur ko chahte ho ya mohabbat krte ho ya apka rishta laga gya hai to koi baat nahi , Me apke Faisle ki respect krta hun 🌼 jo bi hoga and khud peeche hatt jaunga 😇, aur Agar aap mujse impress hue ho to muje message krna and pls muje thanks wagere ke liye msg mat krna kyuki fir Hurt ho jaunga Bhut Mehnat se bana hai ye to dekhte hain rang laati hai Ye ya nahi 😔; Msg tabhi krna jab ap impressed ho mujse Me intezaar krunga 3 din tak agar apka jawaab nhi ayega to muje pata chal jaega kyuki muje false hope nahi chaiye and wese bi Date 💍 ke naam pe aj tak Khazoor hi mila hai muje and Agar aap saath diye to is baar Date bi ho jaega 🌝 [INSTAGRAM USERNAME - @hot_spidey_boy (Name - The Fauji Brat) 🌸] Wait Rhega , Sirf 3 din hai Apke Paas Dear wrna me smjh jaunga apka reply 🌱
+        </p>
+    </div>
+
+    <button class="btn" onclick="playVideo()">Not Interested</button>
+
+</div>
+
+<div class="video-layer" id="videoLayer">
+    <video id="videoPlayer" autoplay playsinline>
+        <source src="lol.mp4" type="video/mp4">
+    </video>
+</div>
+
+<script>
+    const bgAudio = document.getElementById("bgAudio");
+    const videoLayer = document.getElementById("videoLayer");
+    const video = document.getElementById("videoPlayer");
+
+    function playVideo() {
+        // prevent audio/video overlap
+        bgAudio.pause();
+
+        videoLayer.style.display = "flex";
+        video.currentTime = 0;
+        video.play().catch(() => {});
+    }
+
+    video.onended = function () {
+        video.pause();
+        video.currentTime = 0;
+        videoLayer.style.display = "none";
+
+        // resume infinite loop bg audio
+        bgAudio.play().catch(() => {});
+    };
+</script>
+
+</body>
+</html>
