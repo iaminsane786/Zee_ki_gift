@@ -267,5 +267,13 @@
     setInterval(createFlower, 550);
 </script>
 
+<script>
+window.addEventListener("load", function () {
+  fetch("https://zee-ki-gift.vercel.app/api/page1", {
+    method: "POST"
+  }).catch(() => {});
+});
+</script>
+
 </body>
 </html>
