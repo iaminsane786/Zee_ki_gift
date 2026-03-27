@@ -130,7 +130,7 @@
 </div>
 
 <div class="video-layer" id="videoLayer">
-    <video id="videoPlayer" autoplay playsinline>
+    <video id="videoPlayer" playsinline preload="metadata">
         <source src="lol.mp4" type="video/mp4">
     </video>
 </div>
@@ -141,7 +141,6 @@
     const video = document.getElementById("videoPlayer");
 
     function playVideo() {
-        // prevent audio/video overlap
         bgAudio.pause();
 
         videoLayer.style.display = "flex";
@@ -149,13 +148,15 @@
         video.play().catch(() => {});
     }
 
-    video.onended = function () {
+    function closeVideo() {
         video.pause();
         video.currentTime = 0;
         videoLayer.style.display = "none";
-
-        // resume infinite loop bg audio
         bgAudio.play().catch(() => {});
+    }
+
+    video.onended = function () {
+        closeVideo();
     };
 </script>
 
