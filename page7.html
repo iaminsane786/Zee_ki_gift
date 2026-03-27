@@ -57,8 +57,7 @@
             text-align: center;
         }
 
-        video,
-        img {
+        video {
             width: 100%;
             display: block;
         }
@@ -93,12 +92,10 @@
 
 <body>
 
-    <!-- POPUP LAYER -->
     <div class="popup-layer" id="popupLayer">
         <div class="popup-box" id="popupBox"></div>
     </div>
 
-    <!-- MEDIA LAYER -->
     <div class="media-layer" id="mediaLayer">
         <button class="skip-btn" id="skipBtn" onclick="skipStep()">SKIP</button>
         <div class="media-wrap" id="mediaWrap"></div>
@@ -139,8 +136,6 @@
 
             { type: "popup", className: "lightbrown", text: "Ab ye Dekho", duration: 1800, topRect: false },
 
-            { type: "image", src: "image7.jpg", duration: 6000 },
-
             { type: "video", src: "video7-5.mp4", untilEnd: true },
 
             { type: "end", next: "page8.html" }
@@ -151,11 +146,14 @@
                 clearTimeout(activeTimeout);
                 activeTimeout = null;
             }
+
             if (activeVideo) {
                 activeVideo.pause();
                 activeVideo.currentTime = 0;
+                activeVideo.onended = null;
                 activeVideo = null;
             }
+
             popupLayer.style.display = "none";
             mediaLayer.style.display = "none";
             mediaWrap.innerHTML = "";
@@ -181,6 +179,7 @@
 
             else if (step.type === "video") {
                 mediaLayer.style.display = "flex";
+
                 const video = document.createElement("video");
                 video.src = step.src;
                 video.autoplay = true;
@@ -189,24 +188,14 @@
                 activeVideo = video;
 
                 if (step.untilEnd) {
-                    video.onended = () => runStep(index + 1);
+                    video.onended = () => {
+                        runStep(index + 1);
+                    };
                 } else {
                     activeTimeout = setTimeout(() => {
                         runStep(index + 1);
                     }, step.duration);
                 }
-            }
-
-            else if (step.type === "image") {
-                mediaLayer.style.display = "flex";
-                const img = document.createElement("img");
-                img.src = step.src;
-                img.alt = "special image";
-                mediaWrap.appendChild(img);
-
-                activeTimeout = setTimeout(() => {
-                    runStep(index + 1);
-                }, step.duration);
             }
 
             else if (step.type === "end") {
@@ -218,7 +207,6 @@
             runStep(currentStep + 1);
         }
 
-        // start
         runStep(0);
     </script>
 
